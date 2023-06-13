@@ -1,0 +1,389 @@
+:root {
+  --mainBgColor: #e6dede;
+  --mainTextColor: #f29829;
+  --priColor: #333;
+  --secColor: #fff;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--mainBgColor);
+  height: 100vh;
+  width: 100vw;
+  line-height: 1.5;
+  overflow-x: hidden;
+  position: relative;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+/* Side-menu */
+.side-menu {
+  position: fixed;
+  height: calc(100% - 70px);
+  width: 400px;
+  top: 70px;
+  left: 0;
+  background-color: var(--secColor);
+  padding: 20px;
+  z-index: 4;
+}
+.side-menu .close-btn {
+  text-align: right;
+  font-size: 2rem;
+}
+.side-menu .close-btn .fa-close {
+  cursor: pointer;
+}
+.side-menu a {
+  text-decoration: none;
+  color: var(--priColor);
+}
+.side-menu .search {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 20px 0;
+}
+.side-menu .search input {
+  border: 2px solid var(--priColor);
+  outline: none;
+  padding: 10px;
+  width: 70%;
+  border-radius: 5px;
+}
+.side-menu .search a {
+  background-color: var(--mainTextColor);
+  padding: 8px 20px;
+  border-radius: 3px;
+  transition: all 0.5s ease-in-out;
+  box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.2);
+}
+.side-menu .search a:hover {
+  opacity: 0.8;
+}
+.side-menu .categories {
+  display: flex;
+  flex-direction: column;
+}
+.side-menu .categories a {
+  padding: 8px 0;
+}
+.side-menu .categories a:hover {
+  opacity: 0.9;
+}
+.side-menu .login {
+  width: 100%;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
+}
+.side-menu .login a {
+  background-color: var(--mainTextColor);
+  padding: 10px 20px;
+  margin: 30px 0;
+  border-radius: 3px;
+  display: block;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  transition: all 0.5s ease-in-out;
+}
+.side-menu .login a:hover {
+  opacity: 0.8;
+}
+
+.main-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 70px;
+  padding: 10px;
+  background-color: var(--mainTextColor);
+  color: var(--secColor);
+  z-index: 1;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+}
+.main-header .container {
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.main-header .container .navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.main-header .container .navbar ul {
+  display: flex;
+  font-size: 1.3rem;
+  text-transform: capitalize;
+  align-items: center;
+}
+.main-header .container .navbar ul li {
+  list-style: none;
+}
+.main-header .container .navbar ul li a {
+  text-decoration: none;
+  color: var(--secColor);
+}
+.main-header .container .navbar a {
+  color: var(--secColor);
+  text-decoration: none;
+  margin: 0 15px;
+  transition: all 0.9s linear;
+}
+.main-header .container .navbar a:hover {
+  color: #ccc;
+}
+.main-header .container .navbar ul li .cart {
+  position: relative;
+}
+.main-header .container .navbar ul li .cart span {
+  position: absolute;
+  top: -13px;
+  right: -15px;
+  background-color: var(--priColor);
+  border-radius: 30%;
+  padding: 0 6px;
+  font-size: 17px;
+}
+.main-header .fa-bars-staggered {
+  font-size: 2rem;
+}
+
+main {
+  width: 100%;
+  max-width: 980px;
+  margin: auto;
+}
+
+.hero {
+  background-image: url("./images/young-woman-training-gym.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 400px;
+  color: var(--secColor);
+  margin: 80px 0;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+}
+.hero .inner-hero {
+  background-color: rgba(0, 0, 0, 0.8);
+  height: 100%;
+  padding: 30px;
+}
+.hero .inner-hero h2 {
+  font-size: 3.5rem;
+  padding: 15px 0;
+}
+.hero .inner-hero p {
+  line-height: 1.8;
+}
+
+/* Products */
+.products .inner-products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-gap: 20px;
+}
+.products .inner-products .item {
+  border: 2px solid var(--mainTextColor);
+  padding: 10px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+.products .inner-products .item .img {
+  max-width: 300px;
+  width: 100%;
+  height: auto;
+  object-fit: fill;
+}
+.products .inner-products .item .net {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.products .inner-products .item .net i {
+  color: var(--mainTextColor);
+  cursor: pointer;
+}
+.products .inner-products .item .order {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.products .inner-products .item .order small {
+  font-weight: 800;
+  font-size: 1.3rem;
+}
+.products .inner-products .item .order a {
+  text-decoration: none;
+  color: var(--mainBgColor);
+  background-color: var(--mainTextColor);
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: all 0.5s ease-in-out;
+}
+.products .inner-products .item .order a:hover {
+  opacity: 0.8;
+}
+
+.banner {
+  background-color: var(--priColor);
+  width: 100%;
+  color: var(--secColor);
+  margin: 50px 0 0;
+}
+.banner .inner-banner {
+  width: 100%;
+  max-width: 80%;
+  margin: 0 auto;
+  padding: 50px;
+}
+.banner .inner-banner .top-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.banner .inner-banner .top-banner div ul {
+  list-style: none;
+  margin: 20px;
+}
+.banner .inner-banner .top-banner div ul li a {
+  text-decoration: none;
+  color: var(--secColor);
+  margin: 10px 0;
+  display: inline-block;
+  text-transform: capitalize;
+}
+.banner .inner-banner .bottom-banner {
+  width: 100%;
+  text-align: center;
+  margin: 50px 0;
+}
+.banner .inner-banner .bottom-banner input {
+  padding: 15px;
+  width: 100%;
+  max-width: 500px;
+  border-radius: 3px;
+  border: none;
+  outline: 0;
+}
+.banner .inner-banner .bottom-banner button {
+  padding: 15px 30px;
+  background-color: var(--mainTextColor);
+  border: none;
+  border-radius: 5px;
+  transition: 0.5s ease-in-out;
+  text-transform: uppercase;
+  font-weight: 700;
+  cursor: pointer;
+}
+.banner .inner-banner .bottom-banner button:hover {
+  opacity: 0.8;
+}
+
+.register {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 5;
+}
+.register .inner-register {
+  width: 500px;
+  height: 600px;
+  background-color: var(--mainBgColor);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.register .inner-register h1 {
+  background-color: var(--mainTextColor);
+  padding: 10px;
+  text-align: center;
+  font-size: 2rem;
+  color: var(--secColor);
+}
+.register .inner-register .fa-close {
+  position: fixed;
+  top: 0;
+  right: 0;
+  padding: 15px;
+  font-size: 2rem;
+  cursor: pointer;
+}
+.register .inner-register .social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 40%;
+  margin: 30px auto;
+}
+.register .inner-register .social-icon i {
+  font-size: 3rem;
+  cursor: pointer;
+}
+.register .inner-register form {
+  width: 100%;
+  max-width: 450px;
+  margin: 10px auto;
+  display: flex;
+  flex-direction: column;
+}
+.register .inner-register form input {
+  border: none;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 3px;
+  width: 100%;
+}
+.register .inner-register form a {
+  text-decoration: none;
+  font-style: italic;
+  margin: 5px 0;
+}
+.register .inner-register form button {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--mainTextColor);
+  border: 0;
+  border-radius: 5px;
+  font-weight: 700;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  margin: 5px 0;
+  cursor: pointer;
+  transition: 0.5s ease-in-out;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+}
+.register .inner-register form button:hover {
+  opacity: 0.8;
+}
+.register .inner-register .foot {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: var(--mainTextColor);
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+}
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: var(--priColor);
+  color: var(--mainBgColor);
+  border-top: 2px solid var(--mainBgColor);
+}
