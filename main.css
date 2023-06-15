@@ -1,5 +1,5 @@
 :root {
-  --mainBgColor: #e6dede;
+  --mainBgColor: #fdf6f6;
   --mainTextColor: #f29829;
   --priColor: #333;
   --secColor: #fff;
@@ -291,51 +291,87 @@ main {
   opacity: 0.8;
 }
 
-.register {
+.register,
+.signup {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: var(--mainBgColor);
   z-index: 5;
 }
-.register .inner-register {
+.register .prev,
+.signup .prev {
+  background-color: var(--mainTextColor);
+  padding: 20px;
+  text-align: left;
+  text-transform: capitalize;
+}
+.register .prev a,
+.signup .prev a {
+  text-decoration: none;
+  color: var(--priColor);
+  cursor: pointer;
+  transition: 0.5s linear;
+}
+.register .prev a i,
+.signup .prev a i {
+  margin: 0 10px;
+}
+.register .prev a:hover,
+.signup .prev a:hover {
+  opacity: 0.7;
+}
+
+.register .inner-register,
+.signup .inner-signup {
   width: 500px;
-  height: 600px;
-  background-color: var(--mainBgColor);
+  height: 650px;
+  background-color: var(--secColor);
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  box-shadow: 7px 7px 15px rgba(0, 0, 0, 0.2);
 }
-.register .inner-register h1 {
+.register .inner-register h1,
+.signup .inner-signup h1 {
   background-color: var(--mainTextColor);
   padding: 10px;
   text-align: center;
   font-size: 2rem;
   color: var(--secColor);
 }
-.register .inner-register .fa-close {
+/* .register .inner-register .clsBtn,
+.signup .inner-signup .clsBtn {
+  text-decoration: none;
+  color: var(--priColor) !important;
+}
+.register .inner-register .fa-close,
+.signup .inner-signup .fa-close {
   position: fixed;
   top: 0;
   right: 0;
   padding: 15px;
   font-size: 2rem;
   cursor: pointer;
-}
-.register .inner-register .social-icon {
+} */
+.register .inner-register .social-icon,
+.signup .inner-signup .social-icon {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 40%;
   margin: 30px auto;
 }
-.register .inner-register .social-icon i {
-  font-size: 3rem;
+.register .inner-register .social-icon i,
+.signup .inner-signup .social-icon i {
+  font-size: 2.7rem;
   cursor: pointer;
 }
-.register .inner-register form {
+.register .inner-register form,
+.signup .inner-signup form {
   width: 100%;
   max-width: 450px;
   margin: 10px auto;
@@ -348,13 +384,24 @@ main {
   margin: 10px 0;
   border-radius: 3px;
   width: 100%;
+  background-color: #f4f4f4;
 }
-.register .inner-register form a {
+.signup .inner-signup form input {
+  border: none;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 3px;
+  width: 100%;
+  background-color: #f4f4f4;
+}
+.register .inner-register form a,
+.signup .inner-signup form a {
   text-decoration: none;
   font-style: italic;
   margin: 5px 0;
 }
-.register .inner-register form button {
+.register .inner-register form button,
+.signup .inner-signup form button {
   width: 100%;
   padding: 10px;
   background-color: var(--mainTextColor);
@@ -368,10 +415,12 @@ main {
   transition: 0.5s ease-in-out;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
 }
-.register .inner-register form button:hover {
+.register .inner-register form button:hover,
+.signup .inner-signup form button:hover {
   opacity: 0.8;
 }
-.register .inner-register .foot {
+.register .inner-register .foot,
+.signup .inner-signup .foot {
   position: absolute;
   bottom: 0;
   left: 0;
