@@ -25,12 +25,18 @@ body {
 .side-menu {
   position: fixed;
   height: calc(100% - 70px);
-  width: 400px;
+  max-width: 400px;
+  width: 100%;
   top: 70px;
   left: 0;
   background-color: var(--secColor);
   padding: 20px;
   z-index: 4;
+  transform: translateX(-1000px);
+  transition: all 0.7s ease-in-out;
+}
+.side-menu.show {
+  transform: translateX(0px);
 }
 .side-menu .close-btn {
   text-align: right;
@@ -249,6 +255,7 @@ main {
 }
 .banner .inner-banner .top-banner {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 20px;
@@ -276,6 +283,7 @@ main {
   border-radius: 3px;
   border: none;
   outline: 0;
+  margin: 10px 0;
 }
 .banner .inner-banner .bottom-banner button {
   padding: 15px 30px;
@@ -286,6 +294,7 @@ main {
   text-transform: uppercase;
   font-weight: 700;
   cursor: pointer;
+  margin: 10px 0;
 }
 .banner .inner-banner .bottom-banner button:hover {
   opacity: 0.8;
@@ -293,13 +302,9 @@ main {
 
 .register,
 .signup {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   background-color: var(--mainBgColor);
-  z-index: 5;
 }
 .register .prev,
 .signup .prev {
@@ -323,11 +328,12 @@ main {
 .signup .prev a:hover {
   opacity: 0.7;
 }
-
 .register .inner-register,
 .signup .inner-signup {
-  width: 500px;
-  height: 650px;
+  width: 550px;
+  /* height: 100%; */
+  height: calc(100vh - 100px);
+  margin-top: 50px;
   background-color: var(--secColor);
   position: absolute;
   top: 50%;
@@ -343,20 +349,6 @@ main {
   font-size: 2rem;
   color: var(--secColor);
 }
-/* .register .inner-register .clsBtn,
-.signup .inner-signup .clsBtn {
-  text-decoration: none;
-  color: var(--priColor) !important;
-}
-.register .inner-register .fa-close,
-.signup .inner-signup .fa-close {
-  position: fixed;
-  top: 0;
-  right: 0;
-  padding: 15px;
-  font-size: 2rem;
-  cursor: pointer;
-} */
 .register .inner-register .social-icon,
 .signup .inner-signup .social-icon {
   display: flex;
@@ -429,10 +421,137 @@ main {
   text-align: center;
   padding: 10px;
 }
+
+/* cart */
+.cart-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: calc(100% - 70px);
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 5;
+  visibility: hidden;
+  transition: all 0.7s ease-in-out;
+}
+.cart-overlay.show {
+  visibility: visible;
+}
+.cart-overlay .inner-cart {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: var(--secColor);
+  width: 50%;
+  height: 100%;
+  overflow-y: scroll;
+  border-left: 5px solid var(--mainTextColor);
+  padding: 30px;
+}
+.cart-overlay .inner-cart .fa-times-circle {
+  font-size: 2rem;
+}
+.cart-overlay .inner-cart .cart-item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  border-bottom: 3px solid var(--mainTextColor);
+  margin: 10px 0;
+  padding: 10px 0;
+  gap: 10px;
+}
+.cart-overlay .inner-cart .cart-item .quantity {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.cart-overlay .inner-cart .cart-item .quantity i {
+  color: var(--mainTextColor);
+}
+.cart-overlay .inner-cart .cart-item .cart-img {
+  width: 150px;
+  height: 150px;
+}
+.cart-overlay .inner-cart .cart-item .cart-img img {
+  width: 100%;
+  border-radius: 3px;
+}
+.cart-overlay .inner-cart .clear-order {
+  width: 100%;
+  text-align: center;
+}
+.cart-overlay .inner-cart .clear-order .total {
+  font-size: 2rem;
+  text-transform: capitalize;
+}
+.cart-overlay .inner-cart .clear-order button {
+  background-color: var(--mainTextColor);
+  padding: 10px;
+  border: none;
+  width: 150px;
+  height: 50px;
+  margin: 10px 20px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  border-radius: 5px;
+  transition: 0.5s ease;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+}
+.cart-overlay .inner-cart .clear-order button:hover {
+  opacity: 0.8;
+}
 footer {
   text-align: center;
   padding: 20px;
   background-color: var(--priColor);
   color: var(--mainBgColor);
   border-top: 2px solid var(--mainBgColor);
+}
+
+@media screen and (max-width: 600px) {
+  .hero {
+    height: 80vh;
+  }
+  .products .inner-products {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 10px;
+    padding: 20px;
+  }
+  .banner .inner-banner .top-banner {
+    align-items: flex-start;
+  }
+  .banner .inner-banner {
+    padding: 10px;
+  }
+  .banner .inner-banner .bottom-banner {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .banner .inner-banner .bottom-banner input {
+    margin: 20px 0;
+  }
+  .cart-overlay .inner-cart {
+    width: 100%;
+  }
+  .register .inner-register,
+  .signup .inner-signup {
+    width: 100%;
+    height: calc(100vh - 100px);
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(0, 0);
+    margin-top: 70px;
+  }
+  .register .prev,
+  .signup .prev {
+    z-index: 5;
+  }
+  .register .inner-register form,
+  .signup .inner-signup form {
+    padding: 10px;
+  }
 }
