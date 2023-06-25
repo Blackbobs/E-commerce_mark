@@ -23,3 +23,19 @@ cartBtn.addEventListener("click", () => {
 function displayMenu() {
   sideMenu.classList.toggle("show");
 }
+
+class Products {
+  async getProducts() {
+    try {
+      let result = await fetch("products.json");
+      let data = await result.json();
+      return data;
+    } catch (error) {}
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const products = new Products();
+
+  products.getProducts().then((data) => console.log(data));
+});
