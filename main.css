@@ -217,6 +217,7 @@ main {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin: 10px 0;
 }
 .products .inner-products .item .net i {
   color: var(--mainTextColor);
@@ -238,6 +239,7 @@ main {
   padding: 10px 20px;
   border-radius: 5px;
   transition: all 0.5s ease-in-out;
+  font-size: 0.8rem;
 }
 .products .inner-products .item .order a:hover {
   opacity: 0.8;
