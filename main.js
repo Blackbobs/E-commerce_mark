@@ -18,12 +18,14 @@ closeCart.addEventListener("click", () => {
 });
 
 cartBtn.addEventListener("click", () => {
-  cartUi.classList.toggle("show");
+  cartUi.classList.add("show");
 });
 
 function displayMenu() {
   sideMenu.classList.toggle("show");
 }
+
+let cart = [];
 
 class Products {
   async getProducts() {
@@ -50,7 +52,7 @@ class UI {
       result += `
       <div class="item">
       <img
-        src=${product.image}
+        src="./images/young-woman-training-gym.jpg"
         alt=""
         class="img"
       />
@@ -60,12 +62,25 @@ class UI {
       </div>
       <div class="order" data-id=${product.id}>
         <small>${product.price}</small>
-        <a href="#">Add to cart</a>
+        <a href="#" class="bag-btn">Add to cart</a>
       </div>
     </div>
       `;
     });
     productDom.innerHTML = result;
+  }
+  getBagButtons() {
+    const buttons = [...document.querySelectorAll(".bag-btn")];
+    buttons.forEach((button) => {
+      let id = button.dataset.id;
+      console.log(id);
+    });
+  }
+}
+
+class Storage {
+  static saveProducts(products) {
+    localStorage.setItem("products", JSON.stringify(products));
   }
 }
 
@@ -73,5 +88,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const ui = new UI();
   const products = new Products();
 
-  products.getProducts().then((products) => ui.displayProducts(products));
+  products
+    .getProducts()
+    .then((products) => {
+      ui.displayProducts(products);
+      Storage.saveProducts(products);
+    })
+    .then(() => {
+      ui.getBagButtons();
+    });
 });

@@ -10,6 +10,9 @@
   margin: 0;
   padding: 0;
 }
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   background-color: var(--mainBgColor);
@@ -428,10 +431,10 @@ main {
 
 /* cart */
 .cart-overlay {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
-  height: calc(100% - 70px);
+  height: 100vh;
   width: 100vw;
   background-color: rgba(0, 0, 0, 0.2);
   z-index: 5;
