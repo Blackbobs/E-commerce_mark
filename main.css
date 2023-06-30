@@ -457,6 +457,10 @@ main {
   border-left: 5px solid var(--mainTextColor);
   padding: 30px;
 }
+.cart-overlay .inner-cart h4 {
+  font-size: 2rem;
+  text-align: center;
+}
 .cart-overlay .inner-cart .fa-times-circle {
   font-size: 2rem;
 }
@@ -468,27 +472,40 @@ main {
   margin: 10px 0;
   padding: 10px 0;
   gap: 10px;
+  flex-wrap: wrap;
 }
-.cart-overlay .inner-cart .cart-item .quantity {
+.cart-overlay .inner-cart .cart-content .cart-item .quantity {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
 }
-.cart-overlay .inner-cart .cart-item .quantity i {
+.cart-overlay .inner-cart .cart-content .cart-item .quantity i {
   color: var(--mainTextColor);
 }
-.cart-overlay .inner-cart .cart-item .cart-img {
+.cart-overlay .inner-cart .cart-content .cart-item .cart-img {
   width: 150px;
   height: 150px;
 }
-.cart-overlay .inner-cart .cart-item .cart-img img {
+.cart-overlay .inner-cart .cart-content .cart-item .cart-img img {
   width: 100%;
   border-radius: 3px;
+}
+.cart-overlay .inner-cart .cart-content .cart-item .description {
+  flex: 1;
+  margin: 0 10px;
+}
+.cart-overlay .inner-cart .cart-content .cart-item .description .remove-item {
+  cursor: pointer;
+  opacity: 0.8;
+  font-size: 0.8rem;
+  text-transform: capitalize;
 }
 .cart-overlay .inner-cart .clear-order {
   width: 100%;
   text-align: center;
+  position: static;
+  bottom: 0;
 }
 .cart-overlay .inner-cart .clear-order .total {
   font-size: 2rem;
@@ -544,6 +561,19 @@ footer {
   }
   .cart-overlay .inner-cart {
     width: 100%;
+  }
+  .cart-overlay .inner-cart .cart-content .cart-item {
+    /* display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 2fr));
+    width: 100%; */
+  }
+  .cart-overlay .inner-cart .cart-content .cart-item .cart-img {
+    width: 300px;
+    margin-bottom: 80px;
+  }
+  .cart-overlay .inner-cart .cart-content .cart-item .cart-img img {
+    width: 100%;
+    /* margin-bottom: 50px; */
   }
   .register .inner-register,
   .signup .inner-signup {

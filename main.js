@@ -8,6 +8,7 @@ const closeCart = document.querySelector(".fa-times-circle");
 const productDom = document.querySelector(".inner-products");
 const cartTotal = document.querySelector(".total");
 const cartItems = document.querySelector(".cart-items");
+const cartContent = document.querySelector(".cart-content");
 
 // events listener
 menuBtn.addEventListener("click", displayMenu);
@@ -57,7 +58,7 @@ class UI {
       <div class="item">
       <img
         src="./images/young-woman-training-gym.jpg"
-        alt=""
+        alt="product"
         class="img"
       />
       <div class="net">
@@ -93,6 +94,7 @@ class UI {
         Storage.saveCart(cart);
 
         this.setCartValues(cart);
+        this.addCartItem(cartItem);
       });
     });
   }
@@ -103,9 +105,39 @@ class UI {
       tempTotal += item.price * item.amount;
       itemsTotal += item.amount;
     });
-    cartTotal.innerText = tempTotal;
+    cartTotal.innerHTML = `Total : &#8358; ${tempTotal}`;
     cartItems.innerText = itemsTotal;
-    console.log(cartTotal, cartItems);
+  }
+
+  addCartItem(item) {
+    const div = document.createElement("div");
+    div.classList.add("cart-item");
+    div.innerHTML = `
+          <div class="cart-img">
+            <img src="./images/young-woman-training-gym.jpg" alt="product" />
+          </div>
+          <div class="description">
+            <h5 class="item-name">${item.title}</h5>
+            <small class="prc">&#8358; ${item.price}</small>
+            <br>
+            <small class="remove-item" data-id=${item.id}>remove</small>
+          </div>
+          <div class="quantity">
+            <i class="fas fa-chevron-up" data-id=${item.id}></i>
+            <small class="no_item">${item.amount}</small>
+            <i class="fas fa-chevron-down" data-id=${item.id}></i>
+          </div>
+    `;
+    cartContent.appendChild(div);
+  }
+
+  setupAPP() {
+    cart = Storage.getCart();
+    this.setCartValues(cart);
+    this.populateCart(cart);
+  }
+  populateCart(cart) {
+    cart.forEach((item) => this.addCartItem(item));
   }
 }
 
@@ -122,11 +154,18 @@ class Storage {
   static saveCart(cart) {
     localStorage.setItem("cart", JSON.stringify(cart));
   }
+  static getCart() {
+    return localStorage.getItem("cart")
+      ? JSON.parse(localStorage.getItem("cart"))
+      : [];
+  }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
   const ui = new UI();
   const products = new Products();
+
+  ui.setupAPP();
 
   products
     .getProducts()
