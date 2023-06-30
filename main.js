@@ -6,6 +6,8 @@ const search = document.querySelector(".fa-search");
 const closeBtn = document.querySelector(".fa-close");
 const closeCart = document.querySelector(".fa-times-circle");
 const productDom = document.querySelector(".inner-products");
+const cartTotal = document.querySelector(".total");
+const cartItems = document.querySelector(".cart-items");
 
 // events listener
 menuBtn.addEventListener("click", displayMenu);
@@ -26,6 +28,8 @@ function displayMenu() {
 }
 
 let cart = [];
+
+let buttonsDom = [];
 
 class Products {
   async getProducts() {
@@ -60,9 +64,9 @@ class UI {
         <h4 class="name">${product.title}</h4>
         <i class="fa fa-heart" aria-hidden="true"></i>
       </div>
-      <div class="order" data-id=${product.id}>
-        <small>${product.price}</small>
-        <a href="#" class="bag-btn">Add to cart</a>
+      <div class="order">
+        <small>&#8358; ${product.price}</small>
+        <button class="bag-btn" data-id=${product.id}>Add to cart</button>
       </div>
     </div>
       `;
@@ -71,16 +75,52 @@ class UI {
   }
   getBagButtons() {
     const buttons = [...document.querySelectorAll(".bag-btn")];
+    buttonsDom = buttons;
     buttons.forEach((button) => {
       let id = button.dataset.id;
-      console.log(id);
+      let inCart = cart.find((item) => item.id === id);
+      if (inCart) {
+        button.innerText = "In Cart";
+        button.disabled = true;
+      }
+      button.addEventListener("click", (e) => {
+        e.target.innerText = "In Cart";
+        e.target.disabled = true;
+
+        let cartItem = { ...Storage.getProducts(id), amount: 1 };
+        cart = [...cart, cartItem];
+
+        Storage.saveCart(cart);
+
+        this.setCartValues(cart);
+      });
     });
+  }
+  setCartValues(cart) {
+    let tempTotal = 0;
+    let itemsTotal = 0;
+    cart.map((item) => {
+      tempTotal += item.price * item.amount;
+      itemsTotal += item.amount;
+    });
+    cartTotal.innerText = tempTotal;
+    cartItems.innerText = itemsTotal;
+    console.log(cartTotal, cartItems);
   }
 }
 
 class Storage {
   static saveProducts(products) {
     localStorage.setItem("products", JSON.stringify(products));
+  }
+
+  static getProducts(id) {
+    let products = JSON.parse(localStorage.getItem("products"));
+    return products.find((product) => product.id === id);
+  }
+
+  static saveCart(cart) {
+    localStorage.setItem("cart", JSON.stringify(cart));
   }
 }
 

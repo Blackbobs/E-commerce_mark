@@ -206,7 +206,7 @@ main {
 }
 .products .inner-products .item {
   border: 2px solid var(--mainTextColor);
-  padding: 15px;
+  padding: 10px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
   border-radius: 3px;
 }
@@ -215,12 +215,13 @@ main {
   width: 100%;
   height: auto;
   object-fit: fill;
+  border-radius: 3px;
 }
 .products .inner-products .item .net {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 10px 0;
+  margin: 5px 0;
 }
 .products .inner-products .item .net i {
   color: var(--mainTextColor);
@@ -235,14 +236,15 @@ main {
   font-weight: 800;
   font-size: 1.3rem;
 }
-.products .inner-products .item .order a {
+.products .inner-products .item .order .bag-btn {
   text-decoration: none;
   color: var(--mainBgColor);
   background-color: var(--mainTextColor);
-  padding: 10px 20px;
+  padding: 18px 25px;
   border-radius: 5px;
   transition: all 0.5s ease-in-out;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
+  border: none;
 }
 .products .inner-products .item .order a:hover {
   opacity: 0.8;
