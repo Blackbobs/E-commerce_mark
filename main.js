@@ -9,6 +9,7 @@ const productDom = document.querySelector(".inner-products");
 const cartTotal = document.querySelector(".total");
 const cartItems = document.querySelector(".cart-items");
 const cartContent = document.querySelector(".cart-content");
+const clearCartBtn = document.querySelector(".clear");
 
 // events listener
 menuBtn.addEventListener("click", displayMenu);
@@ -16,9 +17,7 @@ search.addEventListener("click", displayMenu);
 closeBtn.addEventListener("click", () => {
   sideMenu.classList.remove("show");
 });
-closeCart.addEventListener("click", () => {
-  cartUi.classList.remove("show");
-});
+closeCart.addEventListener("click", hideCart);
 
 cartBtn.addEventListener("click", () => {
   cartUi.classList.add("show");
@@ -26,6 +25,10 @@ cartBtn.addEventListener("click", () => {
 
 function displayMenu() {
   sideMenu.classList.toggle("show");
+}
+
+function hideCart() {
+  cartUi.classList.remove("show");
 }
 
 let cart = [];
@@ -139,6 +142,55 @@ class UI {
   populateCart(cart) {
     cart.forEach((item) => this.addCartItem(item));
   }
+
+  cartLogic() {
+    clearCartBtn.addEventListener("click", () => {
+      this.clearCart();
+    });
+
+    cartContent.addEventListener("click", (e) => {
+      if (e.target.classList.contains("remove-item")) {
+        let removeItem = e.target;
+        let id = removeItem.dataset.id;
+        cartContent.removeChild(removeItem.parentElement.parentElement);
+        this.removeItem(id);
+      } else if (e.target.classList.contains("fa-chevron-up")) {
+        let addAmount = e.target;
+        let id = addAmount.dataset.id;
+        let tempItem = cart.find((item) => item.id === id);
+        tempItem.amount = tempItem.amount = 1;
+        Storage.saveCart(cart);
+        this.setCartValues(cart);
+        addAmount.nextElementSibling.innerText = tempItem.amount;
+      }
+    });
+  }
+
+  clearCart() {
+    let cartItems = cart.map((item) => item.id);
+    cartItems.forEach((id) => {
+      this.removeItem(id);
+    });
+
+    while (cartContent.children.length > 0) {
+      cartContent.removeChild(cartContent.children[0]);
+    }
+
+    hideCart();
+  }
+
+  removeItem(id) {
+    cart = cart.filter((item) => item.id != id);
+    this.setCartValues(cart);
+    Storage.saveCart(cart);
+    let button = this.getSingleButton(id);
+    button.disabled = false;
+    button.innerHTML = `Add to cart`;
+  }
+
+  getSingleButton(id) {
+    return buttonsDom.find((button) => button.dataset.id === id);
+  }
 }
 
 class Storage {
@@ -175,5 +227,6 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .then(() => {
       ui.getBagButtons();
+      ui.cartLogic();
     });
 });

@@ -144,7 +144,7 @@ body {
 .main-header .container .navbar a {
   color: var(--secColor);
   text-decoration: none;
-  margin: 0 15px;
+  margin: 0 20px;
   transition: all 0.9s linear;
 }
 .main-header .container .navbar a:hover {
@@ -164,8 +164,12 @@ body {
   padding: 0 6px;
   font-size: 17px;
 }
+.main-header .fa-search {
+  cursor: pointer;
+}
 .main-header .fa-bars-staggered {
   font-size: 2rem;
+  /* display: none; */
 }
 
 main {
@@ -199,6 +203,14 @@ main {
 }
 
 /* Products */
+.products {
+  padding: 20px;
+}
+.products h2 {
+  text-align: center;
+  font-size: 2.3rem;
+  margin: 10px 0;
+}
 .products .inner-products {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -211,7 +223,7 @@ main {
   border-radius: 3px;
 }
 .products .inner-products .item .img {
-  max-width: 300px;
+  max-width: 350px;
   width: 100%;
   height: auto;
   object-fit: fill;
@@ -440,11 +452,13 @@ main {
   width: 100vw;
   background-color: rgba(0, 0, 0, 0.2);
   z-index: 5;
-  visibility: hidden;
+  /* visibility: hidden; */
+  transform: translate3d(0, 100%, 0);
   transition: all 0.7s ease-in-out;
 }
 .cart-overlay.show {
-  visibility: visible;
+  /* visibility: visible; */
+  transform: translate3d(0, 0, 0);
 }
 .cart-overlay .inner-cart {
   position: fixed;
@@ -562,10 +576,11 @@ footer {
   .cart-overlay .inner-cart {
     width: 100%;
   }
-  .cart-overlay .inner-cart .cart-content .cart-item {
-    /* display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 2fr));
-    width: 100%; */
+  .main-header .container .navbar ul li .hide {
+    display: none;
+  }
+  .main-header .fa-bars-staggered {
+    display: block;
   }
   .cart-overlay .inner-cart .cart-content .cart-item .cart-img {
     width: 300px;
